@@ -56,29 +56,30 @@ class Bird {
     }
   
     _drawFourLines() {
-      // Calculate angle-based spread for top lines
-      let topSpreadFactor = this.lineLength * tan(this.angle/2);
-  
-      // Calculate angle-based spread for bottom lines (opposite direction)
-      let bottomSpreadFactor = this.lineLength * tan(this.angle/2);
-  
-      // First two lines (creating the base V)
-      let vertexX = 0;
-      let vertexY = 0;
-      let leftTopEndX = vertexX - topSpreadFactor;
-      let rightTopEndX = vertexX + topSpreadFactor;
-      let leftBottomEndX = vertexX - bottomSpreadFactor;
-      let rightBottomEndX = vertexX + bottomSpreadFactor;
+      // Calculate spread factors based on angle
+      let spreadFactor = this.lineLength * tan(this.angle/2);
+
+      // Center point
+      let centerX = 0;
+      let centerY = 0;
+
+      // Calculate endpoints for top V
+      let leftTopX = centerX - spreadFactor;
+      let rightTopX = centerX + spreadFactor;
       let topY = -this.lineLength/2;
+
+      // Calculate endpoints for bottom lines using the same angle
+      let leftBottomX = leftTopX - spreadFactor;  // Additional spread for bottom point
+      let rightBottomX = rightTopX + spreadFactor;  // Additional spread for bottom point
       let bottomY = this.lineLength/2;
-  
-      // First two lines of the V (top)
-      line(leftTopEndX, topY, vertexX, vertexY);
-      line(rightTopEndX, topY, vertexX, vertexY);
-  
-      // Additional two lines connecting to the endpoints (bottom)
-      line(leftTopEndX, topY, leftBottomEndX, bottomY);
-      line(rightTopEndX, topY, rightBottomEndX, bottomY);
+
+      // Draw top V
+      line(leftTopX, topY, centerX, centerY);
+      line(rightTopX, topY, centerX, centerY);
+
+      // Draw angled bottom lines
+      line(leftTopX, topY, leftBottomX, bottomY);
+      line(rightTopX, topY, rightBottomX, bottomY);
     }
   
     // Optional: Randomize bird characteristics

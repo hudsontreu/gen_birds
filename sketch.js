@@ -18,7 +18,7 @@ function preload() {
 
 function setup() {
   createCanvas(2200, 2800, WEBGL);
-  frameRate(18);
+  frameRate(8);
   smooth();
 
   //BUFFERS
@@ -38,7 +38,7 @@ function setup() {
       lineLength: random(100, 600),
       color: color(getRandomPaletteColor()), 
       // color: color(random(255), random(255), random(255)), 
-      strokeWeight: random(1, 4),
+      strokeWeight: random(2, 5),
       angle: random(PI/8, PI/2)
     }));
   }
@@ -50,17 +50,17 @@ function draw() {
   translate(-width/2, -height/2);
 
   //BACKGROUND
-  // bgImage_buffer.begin();
+  bgImage_buffer.begin();
+  imageMode(CENTER);
   tint(70, 70, 70);
-  // imageMode(CENTER);
   image(bgImage, 0, 0, width, height);
-  filter(THRESHOLD,  0.22)
-  // bgImage_buffer.end();
-  // image(bgImage_buffer, 0, 0, width, height);
+  filter(THRESHOLD,  0.2)
+  bgImage_buffer.end();
+  image(bgImage_buffer, 0, 0, width, height);
 
   //BIRDS
   birds_buffer.begin();
-  // clear();
+  clear();
   blendMode(ADD);
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
