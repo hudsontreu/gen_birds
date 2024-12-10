@@ -1,12 +1,8 @@
-//PAUSE LOOP
+
 function keyPressed() {
-    if (key === 's' || key === 'S') {
-      if (isLooping()) {
-        noLoop();
-      } else {
-        loop();
-      }
-    }
+    key === 's' && (isLooping() ? noLoop() : loop());
+    key === '1' && (util_1 = !util_1);
+    key === '2' && (util_2 = !util_2);
   }
 
   function generateRandomASCIIString(length) {
