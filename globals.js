@@ -1,18 +1,23 @@
+//UTILITY VARIABLES
 let util_1 = false;
 let util_2 = false;
 
+//BG IMAGE
 let bgImage;
 let bgImage_buffer;
 
+//TEXT
 let font;
 let text_primary;
 let generativeText = '';
 let text_buffer;
 
+//BIRDS
 let birds = [];
 let numBirds;
 let birds_buffer;
 
+//RECT GLITCH SHADER
 let rectGlitchShader;
 let shaderSrc = `
 precision mediump float;
@@ -64,3 +69,11 @@ void main() {
     gl_FragColor = texture2D(tex0, shiftedUV);
 }
 `;
+
+let glitchParams = {
+    shiftMax: 0.05,
+    sortAmount: 0.003,
+    shiftSpeed: 0.009,
+    blockNumX: 200.0,
+    blockNumY: 20.0
+  };

@@ -1,11 +1,3 @@
-let glitchParams = {
-  shiftMax: 0.05,
-  sortAmount: 0.003,
-  shiftSpeed: 0.009,
-  blockNumX: 200.0,
-  blockNumY: 20.0
-};
-
 
 function preload() {
   bgImage = loadImage("assets/reflection.png");
@@ -68,14 +60,14 @@ function draw() {
 
   //BIRDS
   birds_buffer.begin();
-
   if (util_1) {clear()};
-  
+
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
     bird.draw();
     bird.randomize();
   }
+  
   birds_buffer.end();
   image(birds_buffer, 0, 0, width, height);
   blendMode(ADD);
