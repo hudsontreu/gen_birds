@@ -40,11 +40,11 @@ function setup() {
   
   // Initialize text lines
   textLines = [
-    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2 + 800, -height/2 + 200),
-    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2 + 800, -height/2 + 300),
-    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2 + 800, -height/2 + 400),
-    new TextLine("--- --- --- --- ----", "", 80, -width/2 + 800, -height/2 + 500),
-    new TextLine("ORIGIN ID:", 'TEST', 80, -width/2 + 800, -height/2 + 800)
+    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 200),
+    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 300),
+    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 400),
+    new TextLine("--- --- --- --- ----", "", 80, -width/2.5 + 800, -height/3 + 500),
+    new TextLine("ORIGIN ID:", 'TEST', 80, -width/2.5 + 800, -height/3 + 800)
   ];
 
   //BIRDS SETUP
@@ -60,9 +60,10 @@ function setup() {
   }
 
   //BARCODES SETUP
-  barcodes.push(new Barcode(width/4, height/3, width/2, height/4, 40, 1));  // Fast update, medium stripes
-  barcodes.push(new Barcode(width/4, height/6, width/2, height/8, 20, 2));  // Slower update, fewer stripes
-  barcodes.push(new Barcode(width/4, height/8, width/2, height/8, 60, 6));  // Medium update, many stripes
+  barcodes.push(new Barcode(width/6, height/6, width/1.5, height/8, 20, 2));  // Slower update, fewer stripes
+  barcodes.push(new Barcode(width/6, height/5, width/1.5, height/8, 60, 6));  // Medium update, many stripes
+  barcodes.push(new Barcode(width/6, height/3, width/1.5, height/4, 400, 1));  // Fast update, medium stripes
+
 }
 
 
