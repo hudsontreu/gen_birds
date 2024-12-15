@@ -17,6 +17,7 @@ let bgVid;
 
 //IMAGES
 let testImage;
+let flash_buffer;
 
 //FILM & GRAIN TEXTURES
 let grainTextures = [];

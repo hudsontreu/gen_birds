@@ -48,6 +48,7 @@ function setup() {
   //BUFFERS
   birds_buffer = createFramebuffer();
   bgImage_buffer = createFramebuffer();
+  flash_buffer = createFramebuffer();
 
   //GENERATIVE TEXT SETUP
   text_primary = color(255, 0, 0);
@@ -122,10 +123,17 @@ function draw() {
   }
 
   //IMAGE FLASH
-  push();
-  tint(200);
-  if(util_7) {if(random(1) < 0.1) {image(testImage, 0, 0, width, height)}};
-  pop();
+  if(util_7) {
+    if(random(1) < 0.1) {
+      flash_buffer.begin();
+      clear();
+      imageMode(CENTER);
+      image(testImage, 0, 0, width, height);
+      filter(THRESHOLD, 0.72);
+      flash_buffer.end();
+      image(flash_buffer, 0, 0);
+    }
+  }
 
   //BIRDS
   birds_buffer.begin();
