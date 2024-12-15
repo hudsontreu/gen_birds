@@ -28,7 +28,6 @@ let textLines = [];
 let font;
 let text_primary;
 let generativeText = '';
-let text_buffer;
 
 //BIRDS
 let birds = [];

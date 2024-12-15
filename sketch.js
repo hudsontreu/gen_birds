@@ -33,18 +33,18 @@ function setup() {
   //BUFFERS
   birds_buffer = createFramebuffer();
   bgImage_buffer = createFramebuffer();
-  text_buffer = createFramebuffer();
 
   //GENERATIVE TEXT SETUP
   text_primary = color(255, 0, 0);
   generativeText = generateRandomASCIIString(12);
   
-  // Initialize text lines with different update rates
+  // Initialize text lines
   textLines = [
-    new TextLine("STATUS:", "ERROR", 100, -width/2 + 50, -height/2 + 50, 45),
-    new TextLine("SYSTEM:", "ERROR", 100, -width/2 + 50, -height/2 + 100, 30),
-    new TextLine("MEMORY:", "ERROR", 100, -width/2 + 50, -height/2 + 150, 60),
-    new TextLine("OUTPUT:", "ERROR", 100, -width/2 + 50, -height/2 + 200, 15)
+    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2 + 800, -height/2 + 200),
+    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2 + 800, -height/2 + 300),
+    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2 + 800, -height/2 + 400),
+    new TextLine("--- --- --- --- ----", "", 80, -width/2 + 800, -height/2 + 500),
+    new TextLine("ORIGIN ID:", 'TEST', 80, -width/2 + 800, -height/2 + 800)
   ];
 
   //BIRDS SETUP
@@ -95,28 +95,29 @@ function draw() {
   //BIRDS
   birds_buffer.begin();
   if (!util_1) {clear()};
-  
-
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
     bird.draw();
     if(updateBirds) {bird.randomize()};
   }
-  
   birds_buffer.end();
   image(birds_buffer, -width/4, 0, width/2, height/2);
 
+
   //TEXT
-  generativeText = generateRandomASCIIString(12);
-  text_buffer.begin();
-  clear();
-  textFont(font);
-  textSize(200);
-  fill(text_primary);
-  textAlign(CENTER, CENTER);
-  text(generativeText, 0, 0);
-  text_buffer.end();
-  image(text_buffer, 0, 0, width, height);
+  generativeText = generateRandomASCIIString(8);
+  // textFont(font);
+  // textSize(200);
+  // fill(text_primary);
+  // textAlign(CENTER, CENTER);
+  // text(generativeText, 0, 0);
+
+  // TEXT LINES
+  for (let line of textLines) {
+    line.draw();
+  }
+  textLines[4].value = generativeText;
+
 
   //BARCODES
   for (let barcode of barcodes) {
@@ -132,11 +133,6 @@ function draw() {
     tint(255, 30);
     image(selectedGrain, 0, 0, width, height);
     pop();
-  }
-
-  // Draw text lines
-  for (let line of textLines) {
-    line.draw();
   }
 
 }
