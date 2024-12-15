@@ -27,10 +27,6 @@ let updateBirds;
 let barcode_buffer;
 let barcodeStripes = [];
 
-//AUDIO
-let synth;
-let audioInitialized = false;
-
 //RECT GLITCH SHADER
 let rectGlitchShader;
 let shaderSrc = `

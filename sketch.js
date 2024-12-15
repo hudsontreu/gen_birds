@@ -19,20 +19,6 @@ function setup() {
   //SHADERS
   rectGlitchShader = createFilterShader(shaderSrc);
 
-  //AUDIO SETUP
-  synth = new Tone.Synth({
-    oscillator: {
-      type: "sine"
-    },
-    envelope: {
-      attack: 0.004,
-      decay: 0.4,
-      sustain: 0.2,
-      release: 0.2
-    }
-  }).toDestination();
-  synth.volume.value = -10;
-
   //BUFFERS
   birds_buffer = createFramebuffer();
   bgImage_buffer = createFramebuffer();
@@ -60,30 +46,11 @@ function setup() {
     barcodeStripes.push(random() > 0.5 ? 0 : 255); // Random black or white
   }
 
-  // Add click handler for audio initialization
-  window.addEventListener('mousedown', async () => {
-    console.log('Click detected, audio initialized:', audioInitialized);
-    if (!audioInitialized) {
-      await Tone.start();
-      audioInitialized = true;
-      console.log('Audio is now ready');
-      synth.triggerAttackRelease("D2", "8n");
-    }
-  });
 }
 
 function draw() {
   count++;
   updateBirds = (count % BIRD_RATE === 0);
-
-  // Play beep when birds update
-  if (updateBirds) {
-    console.log('Birds updating, audio initialized:', audioInitialized);
-    if (audioInitialized) {
-      console.log('Playing beep at count:', count);
-      synth.triggerAttackRelease("D3", "8n", Tone.now());
-    }
-  }
 
   // translate(-width/2, -height/2);
 
