@@ -29,7 +29,6 @@ function setup() {
   createCanvas(2200, 2800, WEBGL);
   frameRate(30);
   smooth();
-  angleMode(DEGREES);
   imageMode(CENTER);
   textFont(font);
 
