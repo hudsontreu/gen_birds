@@ -1,10 +1,15 @@
 //UTILITY VARIABLES
+let count = 0;
 let util_1 = false;
 let util_2 = false;
 
 //BG IMAGE
 let bgImage;
 let bgImage_buffer;
+
+//GRAINS
+let grainTextures = [];
+let selectedGrain;
 
 //TEXT
 let font;
@@ -16,6 +21,15 @@ let text_buffer;
 let birds = [];
 let numBirds;
 let birds_buffer;
+let updateBirds;
+
+//BARCODE GLITCH
+let barcode_buffer;
+let barcodeStripes = [];
+
+//AUDIO
+let synth;
+let audioInitialized = false;
 
 //RECT GLITCH SHADER
 let rectGlitchShader;
@@ -71,9 +85,11 @@ void main() {
 `;
 
 let glitchParams = {
-    shiftMax: 0.05,
+    shiftMax: 0.1,
     sortAmount: 0.003,
-    shiftSpeed: 0.009,
+    shiftSpeed: 0.019,
     blockNumX: 200.0,
-    blockNumY: 20.0
+    blockNumY: 100.0
   };
+
+//FRAMERATE MODULATIONS
