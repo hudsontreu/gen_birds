@@ -3,6 +3,7 @@
 // Util_3: Center text
 // Util_4: Generative text bottom
 // Util_5: Generative text top
+// Util_6: BG shader random params
 
 let BIRD_RATE = 6;
 let STRIPE_COUNT = 40;
@@ -32,6 +33,15 @@ function setup() {
 
   //SHADERS
   rectGlitchShader = createFilterShader(shaderSrc);
+
+  //SHADER PARAMS
+  glitchParams = {
+    shiftMax: random(0.05, 0.15),
+    sortAmount: random(0.01, 0.05),
+    shiftSpeed: random(0.01, 0.05),
+    blockNumX: random(100.0, 300.0),
+    blockNumY: random(50.0, 150.0)
+  };
 
   //BUFFERS
   birds_buffer = createFramebuffer();
@@ -63,9 +73,9 @@ function setup() {
   }
 
   //BARCODES SETUP
-  barcodes.push(new Barcode(width/6, height/6, width/1.5, height/8, 20, 2));  // Slower update, fewer stripes
-  barcodes.push(new Barcode(width/6, height/5, width/1.5, height/8, 60, 6));  // Medium update, many stripes
-  barcodes.push(new Barcode(width/6, height/3, width/1.5, height/4, 400, 1));  // Fast update, medium stripes
+  barcodes.push(new Barcode(width/6, height/6, width/1.5, height/8, 200, 2));  // Slower update, fewer stripes
+  barcodes.push(new Barcode(width/6, height/5, width/1.5, height/8, 180, 6));  // Medium update, many stripes
+  barcodes.push(new Barcode(width/6, height/3, width/1.5, height/4, 600, 1));  // Fast update, medium stripes
 
 }
 
@@ -95,6 +105,17 @@ function draw() {
   rectGlitchShader.setUniform('u_blockNumY', glitchParams.blockNumY);
   filter(rectGlitchShader);
   pop();
+
+  if(util_6) {
+    glitchParams = {
+      shiftMax: random(0.05, 0.15),
+      sortAmount: random(0.01, 0.05),
+      shiftSpeed: random(0.01, 0.05),
+      blockNumX: random(2.0, 400.0),
+      blockNumY: random(2.0, 400.0)
+    };
+    util_6 = false;
+  }
 
   //BIRDS
   birds_buffer.begin();
@@ -126,6 +147,7 @@ function draw() {
   for (let line of textLines) {
     line.draw();
   }
+
   if(util_4) {textLines[4].value = generativeText};
   if(util_5) {
     textLines[0].value = generativeText_2;

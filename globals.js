@@ -98,12 +98,12 @@ void main() {
 }
 `;
 
-let glitchParams = {
-    shiftMax: 0.1,
-    sortAmount: 0.003,
-    shiftSpeed: 0.019,
-    blockNumX: 200.0,
-    blockNumY: 100.0
-  };
+// let glitchParams = {
+//     shiftMax: 0.1,
+//     sortAmount: 0.003,
+//     shiftSpeed: 0.019,
+//     blockNumX: 200.0,
+//     blockNumY: 100.0
+//   };
 
-//FRAMERATE MODULATIONS
+let glitchParams;
