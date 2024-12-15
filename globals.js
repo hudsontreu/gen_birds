@@ -45,6 +45,7 @@ let birds = [];
 let numBirds;
 let birds_buffer;
 let updateBirds;
+let prev, next;
 
 //BARCODES
 let barcodes = [];

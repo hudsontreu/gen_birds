@@ -8,8 +8,6 @@
 // Util_8: Barcodes Update
 // Util_9: Fullscreen
 
-let prev, next;
-
 let BIRD_RATE = 8;
 let STRIPE_COUNT = 40;
 
@@ -55,16 +53,16 @@ function setup() {
   next = createFramebuffer({ format: FLOAT });
 
   //GENERATIVE TEXT SETUP
-  text_primary = color(255, 0, 0);
+  text_primary = color(20,255,0);
   generativeText = generateRandomASCIIString(12);
   
   // Initialize text lines
   textLines = [
-    new TextLine("DREAMS:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 200),
+    new TextLine("DREAMS:    ", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 200),
     new TextLine("NIGHTMARES:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 300),
-    new TextLine("REALITY:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 400),
+    new TextLine("REALITY:   ", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 400),
     new TextLine("--- --- --- --- ----", "", 80, -width/2.5 + 800, -height/3 + 500),
-    new TextLine("ORIGIN ID:", 'TEST', 80, -width/2.5 + 800, -height/3 + 800)
+    new TextLine("ORIGIN ID: ", 'TEST', 80, -width/2.5 + 800, -height/3 + 800)
   ];
 
   //BIRDS SETUP
@@ -111,7 +109,7 @@ function draw() {
   push();
   blendMode(DARKEST);
   // tint(180, 130, 120);
-  tint(255, 0, 0, 200);
+  tint(110,150,140);
   image(bgImage, 0, 0, width*2, height*2);
   // filter(THRESHOLD, 0.25);
   rectGlitchShader.setUniform('time', millis() / 1000.0);
@@ -137,7 +135,7 @@ function draw() {
 
   //IMAGE FLASH
   if(util_7) {
-    if(random(1) < 0.1) {
+    if(random(1) < 0.05) {
       flash_buffer.begin();
       clear();
       imageMode(CENTER);
@@ -188,7 +186,7 @@ function draw() {
   if(util_3) {
     textFont(font);
     textSize(200);
-    fill(text_primary);
+    fill(255, 0, 0);
     textAlign(CENTER, CENTER);
     text(generativeText, 0, 0);
   };
@@ -217,7 +215,7 @@ function draw() {
     selectedGrain = random(grainTextures);
     push();
     blendMode(SCREEN);
-    tint(255, 30);
+    tint(255, 24);
     image(selectedGrain, 0, 0, width, height);
     pop();
   }
