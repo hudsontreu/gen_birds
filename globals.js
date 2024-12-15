@@ -9,6 +9,10 @@ let util_6 = false;
 let util_7 = false;
 let util_8 = false;
 let util_9 = false;
+let util_0 = false;
+
+let state_1 = false;
+let state_2 = false;
 
 //BG IMAGE
 let bgImage;

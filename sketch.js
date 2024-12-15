@@ -5,10 +5,11 @@
 // Util_5: Generative text top
 // Util_6: BG shader random params
 // Util_7: Image flash
+// Util_8: Barcodes Update
+// Util_9: Fullscreen
 
 let BIRD_RATE = 6;
 let STRIPE_COUNT = 40;
-
 
 function preload() {
   bgImage = loadImage("assets/reflection.png");
@@ -92,7 +93,6 @@ function draw() {
   //SETUP PARAMETERS
   imageMode(CENTER);
 
-
   //BACKGROUND
   push();
   blendMode(DARKEST);
@@ -175,7 +175,7 @@ function draw() {
 
   //BARCODES
   for (let barcode of barcodes) {
-    barcode.update();
+    if(!util_8) {barcode.update()};
     barcode.draw();
   }
 
@@ -183,7 +183,7 @@ function draw() {
   if (util_2) {
     selectedGrain = random(grainTextures);
     push();
-    blendMode(ADD);
+    blendMode(SCREEN);
     tint(255, 30);
     image(selectedGrain, 0, 0, width, height);
     pop();

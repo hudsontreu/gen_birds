@@ -9,7 +9,8 @@ function keyPressed() {
     key === '6' && (util_6 = !util_6);
     key === '7' && (util_7 = !util_7);
     key === '8' && (util_8 = !util_8);
-    key === '9' && (util_9 = !util_9);
+    key === '9' && fullscreen(!fullscreen());
+    key === '0' && (util_0 = !util_0);
   }
 
   function generateRandomASCIIString(length) {
