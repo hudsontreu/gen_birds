@@ -8,7 +8,7 @@
 // Util_8: Barcodes Update
 // Util_9: Fullscreen
 
-let BIRD_RATE = 6;
+let BIRD_RATE = 8;
 let STRIPE_COUNT = 40;
 
 function preload() {
@@ -70,8 +70,10 @@ function setup() {
       lineCount: random([2, 4]),
       lineLength: random(100, 600),
       color: color(getRandomPaletteColor()), 
-      strokeWeight: random(2, 12),
-      angle: random(PI/8, PI/2)
+      // strokeWeight: random(2, 12),
+      strokeWeight: 6,
+      angle: random(PI/12, PI/1.8),
+      growRate: random(5, 60)
     }));
   }
 
@@ -140,7 +142,7 @@ function draw() {
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
     bird.draw();
-    if(updateBirds) {bird.randomize()};
+    if(updateBirds) {bird.grow()};
   }
   birds_buffer.end();
   image(birds_buffer, -width/4, 0, width/2, height/2);

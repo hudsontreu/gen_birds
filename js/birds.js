@@ -3,6 +3,8 @@ class Bird {
       // Position
       this.x = x;
       this.y = y;
+      this.initialY = y;
+      this.initialX = x;
   
       // Configuration options
       this.lineCount = options.lineCount || 2;  // 2 or 4 lines
@@ -10,6 +12,7 @@ class Bird {
       this.angle = options.angle || PI/4;  // Single angle for the entire bird
       this.strokeWeight = options.strokeWeight || 2;  // Line thickness
       this.color = options.color || color(255);  // Default white
+      this.growRate = options.growRate || 10;
     }
   
     draw() {
@@ -82,13 +85,30 @@ class Bird {
       line(rightTopX, topY, rightBottomX, bottomY);
     }
   
-    // Optional: Randomize bird characteristics
     randomize() {
-      // this.x = random(0, 2200/4);
-      // this.y = random(0, 2800/4);
-      this.lineCount = random([2, 4]);
+      this.x = random(0, 2200/4);
+      this.y = random(0, 2800/4);
       this.lineLength = random(100, 600);
       this.angle = random(PI/8, PI/2);
       this.strokeWeight = random(1, 4);
     }
+
+    grow() {
+      if (this.lineCount === 2) {
+        this.lineCount = 4;
+      } else {
+        this.lineCount = 2;
+      }
+      if (this.lineLength <= 700) {
+        this.lineLength += this.growRate;
+      } else {
+        this.lineLength = 0;
+        this.y = this.initialY;
+        this.x = this.initialX;
+      }
+
+      this.y -= 16;
+      this.x -= 8;
+    }
+  
   }
