@@ -99,14 +99,13 @@ class Bird {
       } else {
         this.lineCount = 2;
       }
-      if (this.lineLength <= 700) {
+      if (this.lineLength <= 360) {
         this.lineLength += this.growRate;
       } else {
         this.lineLength = 0;
         this.y = this.initialY;
         this.x = this.initialX;
       }
-
       this.y -= 16;
       this.x -= 8;
     }

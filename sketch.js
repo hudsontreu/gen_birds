@@ -56,24 +56,31 @@ function setup() {
   
   // Initialize text lines
   textLines = [
-    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 200),
-    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 300),
-    new TextLine("ORIGIN ID:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 400),
+    new TextLine("DREAMS:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 200),
+    new TextLine("NIGHTMARES:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 300),
+    new TextLine("REALITY:", "<<<<>>>>", 80, -width/2.5 + 800, -height/3 + 400),
     new TextLine("--- --- --- --- ----", "", 80, -width/2.5 + 800, -height/3 + 500),
     new TextLine("ORIGIN ID:", 'TEST', 80, -width/2.5 + 800, -height/3 + 800)
   ];
 
   //BIRDS SETUP
   numBirds = random(2, 10);
+  const regionX = -width/2;  // Start from left edge
+  const regionWidth = width/3;  // Use one-third of canvas width
+  const regionY = -height/4;  // Middle height region
+  const regionHeight = height/2;  // Half of canvas height
+  
   for (let i = 0; i < numBirds; i++) {
-    birds.push(new Bird(random(-width/2, width/2), random(-height/2, height/2), {
+    const birdX = random(regionX + 100, regionX + regionWidth - 100);
+    const birdY = random(regionY + 100, regionY + regionHeight - 100);
+    
+    birds.push(new Bird(birdX, birdY, {
       lineCount: random([2, 4]),
       lineLength: random(100, 600),
       color: color(getRandomPaletteColor()), 
-      // strokeWeight: random(2, 12),
-      strokeWeight: 6,
+      strokeWeight: 3,
       angle: random(PI/12, PI/1.8),
-      growRate: random(5, 60)
+      growRate: random(2, 30)
     }));
   }
 
@@ -145,7 +152,7 @@ function draw() {
     if(updateBirds) {bird.grow()};
   }
   birds_buffer.end();
-  image(birds_buffer, -width/4, 0, width/2, height/2);
+  image(birds_buffer, 0, 0, width, height);  // Draw buffer at full canvas size
 
 
   //TEXT
@@ -167,7 +174,7 @@ function draw() {
     line.draw();
   }
 
-  if(util_4) {textLines[4].value = generativeText};
+  if(!util_4) {textLines[4].value = generativeText};
   if(util_5) {
     textLines[0].value = generativeText_2;
     textLines[1].value = generativeText_3;
