@@ -2,14 +2,27 @@
 let count = 0;
 let util_1 = false;
 let util_2 = false;
+let util_3 = false;
+let util_4 = false;
+let util_5 = false;
+let util_6 = false;
+let util_7 = false;
+let util_8 = false;
+let util_9 = false;
 
 //BG IMAGE
 let bgImage;
 let bgImage_buffer;
+let bgVid;
 
-//GRAINS
+//FILM & GRAIN TEXTURES
 let grainTextures = [];
 let selectedGrain;
+let filmTextures = [];
+let selectedFilm;
+
+//TEXT LINES
+let textLines = [];
 
 //TEXT
 let font;
@@ -22,6 +35,9 @@ let birds = [];
 let numBirds;
 let birds_buffer;
 let updateBirds;
+
+//BARCODES
+let barcodes = [];
 
 //BARCODE GLITCH
 let barcode_buffer;
