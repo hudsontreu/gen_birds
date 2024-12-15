@@ -4,6 +4,7 @@
 // Util_4: Generative text bottom
 // Util_5: Generative text top
 // Util_6: BG shader random params
+// Util_7: Image flash
 
 let BIRD_RATE = 6;
 let STRIPE_COUNT = 40;
@@ -11,6 +12,7 @@ let STRIPE_COUNT = 40;
 
 function preload() {
   bgImage = loadImage("assets/reflection.png");
+  testImage = loadImage("assets/dalle.png");
   bgVid = createVideo(["assets/water.mov"]);
   bgVid.hide();
   bgVid.loop();  
@@ -93,9 +95,11 @@ function draw() {
 
   //BACKGROUND
   push();
-  tint(180, 130, 120);
+  blendMode(DARKEST);
+  // tint(180, 130, 120);
+  tint(255, 0, 0, 200);
   image(bgImage, 0, 0, width*2, height*2);
-  filter(THRESHOLD, 0.25);
+  // filter(THRESHOLD, 0.25);
   rectGlitchShader.setUniform('time', millis() / 1000.0);
   rectGlitchShader.setUniform('resolution', [width, height]);
   rectGlitchShader.setUniform('u_shiftMax', glitchParams.shiftMax);
@@ -116,6 +120,12 @@ function draw() {
     };
     util_6 = false;
   }
+
+  //IMAGE FLASH
+  push();
+  tint(200);
+  if(util_7) {if(random(1) < 0.1) {image(testImage, 0, 0, width, height)}};
+  pop();
 
   //BIRDS
   birds_buffer.begin();

@@ -15,6 +15,9 @@ let bgImage;
 let bgImage_buffer;
 let bgVid;
 
+//IMAGES
+let testImage;
+
 //FILM & GRAIN TEXTURES
 let grainTextures = [];
 let selectedGrain;
