@@ -8,6 +8,8 @@
 // Util_8: Barcodes Update
 // Util_9: Fullscreen
 
+let prev, next;
+
 let BIRD_RATE = 8;
 let STRIPE_COUNT = 40;
 
@@ -49,6 +51,8 @@ function setup() {
   birds_buffer = createFramebuffer();
   bgImage_buffer = createFramebuffer();
   flash_buffer = createFramebuffer();
+  prev = createFramebuffer({ format: FLOAT });
+  next = createFramebuffer({ format: FLOAT });
 
   //GENERATIVE TEXT SETUP
   text_primary = color(255, 0, 0);
@@ -101,6 +105,7 @@ function draw() {
 
   //SETUP PARAMETERS
   imageMode(CENTER);
+  [prev, next] = [next, prev];
 
   //BACKGROUND
   push();
@@ -143,16 +148,35 @@ function draw() {
     }
   }
 
-  //BIRDS
-  birds_buffer.begin();
+  //FEEDBACK BIRDS
+  next.begin();
+  clear();
+  push();
+  scale(1.005);
+  image(prev, 0, 0);
+  pop();
+
   if (!util_1) {clear()};
+
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
     bird.draw();
     if(updateBirds) {bird.grow()};
   }
-  birds_buffer.end();
-  image(birds_buffer, 0, 0, width, height);  // Draw buffer at full canvas size
+  next.end();
+  image(next, 0, 0, width, height);
+
+
+  //BIRDS
+  // birds_buffer.begin();
+  // if (!util_1) {clear()};
+  // for (let i = 0; i < birds.length; i++) {
+  //   let bird = birds[i];
+  //   bird.draw();
+  //   if(updateBirds) {bird.grow()};
+  // }
+  // birds_buffer.end();
+  // image(birds_buffer, 0, 0, width, height);
 
 
   //TEXT
