@@ -28,6 +28,9 @@ let textLines = [];
 let font;
 let text_primary;
 let generativeText = '';
+let generativeText_2 = '';
+let generativeText_3 = '';
+let generativeText_4 = '';
 
 //BIRDS
 let birds = [];

@@ -1,5 +1,8 @@
 // Util_1: Birds
 // Util_2: Grain textures
+// Util_3: Center text
+// Util_4: Generative text bottom
+// Util_5: Generative text top
 
 let BIRD_RATE = 6;
 let STRIPE_COUNT = 40;
@@ -107,17 +110,28 @@ function draw() {
 
   //TEXT
   generativeText = generateRandomASCIIString(8);
-  // textFont(font);
-  // textSize(200);
-  // fill(text_primary);
-  // textAlign(CENTER, CENTER);
-  // text(generativeText, 0, 0);
+  generativeText_2 = generateRandomASCIIString(8);
+  generativeText_3 = generateRandomASCIIString(8);
+  generativeText_4 = generateRandomASCIIString(8);
+
+  if(util_3) {
+    textFont(font);
+    textSize(200);
+    fill(text_primary);
+    textAlign(CENTER, CENTER);
+    text(generativeText, 0, 0);
+  };
 
   // TEXT LINES
   for (let line of textLines) {
     line.draw();
   }
-  textLines[4].value = generativeText;
+  if(util_4) {textLines[4].value = generativeText};
+  if(util_5) {
+    textLines[0].value = generativeText_2;
+    textLines[1].value = generativeText_3;
+    textLines[2].value = generativeText_4;
+  };
 
 
   //BARCODES
