@@ -109,9 +109,9 @@ function draw() {
   push();
   blendMode(DARKEST);
   // tint(180, 130, 120);
-  tint(110,150,140);
+  if(util_0) {tint(110,150,140)};
   image(bgImage, 0, 0, width*2, height*2);
-  // filter(THRESHOLD, 0.25);
+  if(util_3) {filter(THRESHOLD, 0.25)};
   rectGlitchShader.setUniform('time', millis() / 1000.0);
   rectGlitchShader.setUniform('resolution', [width, height]);
   rectGlitchShader.setUniform('u_shiftMax', glitchParams.shiftMax);
@@ -182,14 +182,6 @@ function draw() {
   generativeText_2 = generateRandomASCIIString(8);
   generativeText_3 = generateRandomASCIIString(8);
   generativeText_4 = generateRandomASCIIString(8);
-
-  if(util_3) {
-    textFont(font);
-    textSize(200);
-    fill(255, 0, 0);
-    textAlign(CENTER, CENTER);
-    text(generativeText, 0, 0);
-  };
 
   // TEXT LINES
   for (let line of textLines) {
