@@ -1,3 +1,47 @@
+//POETIC WORDS
+let poeticWords = [
+    'ABYSS',
+    'WHISPERS',
+    'SHADOWS',
+    'ECHOES',
+    'VOID',
+    'TWILIGHT',
+    'ETHEREAL',
+    'SILENCE',
+    'NEBULA',
+    'FORGOTTEN',
+    'ETERNAL',
+    'SPECTRAL',
+    'ENIGMA',
+    'LABYRINTH',
+    'PHANTOM',
+    'REVERIE',
+    'SOLITUDE',
+    'OBLIVION',
+    'LUMINOUS',
+    'MYSTIC',
+    'VELVET',
+    'MIDNIGHT',
+    'CELESTIAL',
+    'ENTROPY',
+    'REQUIEM',
+    'VESPER',
+    'NEBULOUS',
+    'ARCANE',
+    'ETHEREAL',
+    'CRYPT',
+    'GOSSAMER',
+    'PENUMBRA',
+    'SPECTER',
+    'LIMINAL',
+    'ORACLE',
+    'WRAITH',
+    'UMBRA',
+    'REVENANT',
+    'ETERNAL',
+    'EPHEMERAL'
+];
+
 //UTILITY VARIABLES
 let count = 0;
 let util_1 = false;
