@@ -8,7 +8,7 @@
 // Util_8: Barcodes Update
 // Util_9: Fullscreen
 
-let BIRD_RATE = 8;
+let BIRD_RATE = 7;
 let STRIPE_COUNT = 40;
 
 function preload() {
@@ -109,7 +109,7 @@ function draw() {
   push();
   blendMode(DARKEST);
   // tint(180, 130, 120);
-  if(util_0) {tint(110,150,140)};
+  if(util_0) {tint(110,150,142)};
   image(bgImage, 0, 0, width*2, height*2);
   if(util_3) {filter(THRESHOLD, 0.25)};
   rectGlitchShader.setUniform('time', millis() / 1000.0);
