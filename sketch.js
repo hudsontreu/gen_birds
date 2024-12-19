@@ -8,8 +8,15 @@
 // Util_8: Barcodes Update
 // Util_9: Fullscreen
 
-let BIRD_RATE = 7;
 let STRIPE_COUNT = 40;
+
+//BIRD PARAMS
+let BIRD_RATE = 7;
+let MAX_BIRDS = 15;
+let MIN_SPAWN_INTERVAL = 30;  // minimum frames between spawns
+let MAX_SPAWN_INTERVAL = 120; // maximum frames between spawns
+let nextSpawnTime = 0;
+
 
 function preload() {
   bgImage = loadImage("assets/reflection.png");
@@ -104,6 +111,32 @@ function draw() {
   //SETUP PARAMETERS
   imageMode(CENTER);
   [prev, next] = [next, prev];
+
+  //BIRD SPAWNING
+  if (frameCount > nextSpawnTime && birds.length < MAX_BIRDS) {
+    const regionX = -width/2;
+    const regionWidth = width/3;
+    const regionY = -height/4;
+    const regionHeight = height/2;
+    
+    const birdX = random(regionX + 100, regionX + regionWidth - 100);
+    const birdY = random(regionY + 100, regionY + regionHeight - 100);
+    
+    birds.push(new Bird(birdX, birdY, {
+      lineCount: random([2, 4]),
+      lineLength: random(100, 600),
+      color: color(getRandomPaletteColor()),
+      strokeWeight: 3,
+      angle: random(PI/12, PI/1.8),
+      growRate: random(2, 30)
+    }));
+    
+    // Set next spawn time
+    nextSpawnTime = frameCount + random(MIN_SPAWN_INTERVAL, MAX_SPAWN_INTERVAL);
+  }
+  
+  // Remove completed birds
+  birds = birds.filter(bird => !bird.isComplete());
 
   //BACKGROUND
   push();

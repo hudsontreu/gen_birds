@@ -13,12 +13,26 @@ class Bird {
       this.strokeWeight = options.strokeWeight || 2;  // Line thickness
       this.color = options.color || color(255);  // Default white
       this.growRate = options.growRate || 10;
+
+      // Lifespan parameters
+      this.age = 0;
+      this.lifespan = random(200, 400); // Random lifespan between 200-400 frames
+      this.fadeStart = this.lifespan * 0.7; // Start fading at 70% of lifespan
     }
   
     draw() {
       push();
+      // Calculate opacity based on age
+      let opacity = 255;
+      if (this.age > this.fadeStart) {
+        opacity = map(this.age, this.fadeStart, this.lifespan, 255, 0);
+      }
+      
+      // Apply opacity to color
+      let c = color(red(this.color), green(this.color), blue(this.color), opacity);
+      stroke(c);
+      
       translate(this.x, this.y);
-      stroke(this.color);
       strokeWeight(this.strokeWeight);
       noFill();
   
@@ -30,6 +44,9 @@ class Bird {
         this._drawFourLines();
       }
   
+      // Increment age
+      this.age++;
+      
       pop();
     }
   
@@ -110,4 +127,7 @@ class Bird {
       this.x -= 8;
     }
   
-  }
+    isComplete() {
+      return this.age >= this.lifespan;
+    }
+}
