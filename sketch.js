@@ -9,6 +9,7 @@
 // Util_9: Fullscreen
 
 let STRIPE_COUNT = 40;
+let glitchShifterSine;
 
 //BIRD PARAMS
 let BIRD_RATE = 7;
@@ -139,6 +140,8 @@ function draw() {
   birds = birds.filter(bird => !bird.isComplete());
 
   //BACKGROUND
+  glitchShifterSine = map(sin(frameCount * 0.01), -1, 1, 1, 300);
+  console.log(glitchShifterSine);
   push();
   blendMode(DARKEST);
   // tint(180, 130, 120);
@@ -151,7 +154,7 @@ function draw() {
   rectGlitchShader.setUniform('u_sortAmount', glitchParams.sortAmount);
   rectGlitchShader.setUniform('u_shiftSpeed', glitchParams.shiftSpeed);
   rectGlitchShader.setUniform('u_blockNumX', glitchParams.blockNumX);
-  rectGlitchShader.setUniform('u_blockNumY', glitchParams.blockNumY);
+  rectGlitchShader.setUniform('u_blockNumY', glitchShifterSine);
   filter(rectGlitchShader);
   pop();
 
